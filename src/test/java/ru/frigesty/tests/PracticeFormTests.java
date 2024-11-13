@@ -8,7 +8,7 @@ public class PracticeFormTests extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
-    void fillFormTest() {
+    void fullFillFormTest() {
 
         registrationPage.openPage()
                         .setFirstName("Airat")
@@ -35,5 +35,42 @@ public class PracticeFormTests extends TestBase {
                         .verifyResult("Picture","Duck.png")
                         .verifyResult("Address","USA")
                         .verifyResult("State and City","NCR Delhi");
+    }
+
+    @Test
+    void minimalFillFormTest() {
+
+        registrationPage.openPage()
+                        .setFirstName("Airat")
+                        .setLastName("Karimov")
+                        .chooseGender("Male")
+                        .setMobileNumber("8900011111")
+                        .setBirthDate("2", "August", "2000")
+                        .clickSubmit();
+
+        registrationPage.verifyRegistrationResultsModalAppears()
+                        .verifyResult("Student Name", "Airat Karimov")
+                        .verifyResult("Gender", "Male")
+                        .verifyResult("Mobile", "8900011111")
+                        .verifyResult("Date of Birth", "2 August,2000");
+    }
+
+    @Test
+    void negativeFillFormTest() {
+
+        registrationPage.openPage()
+                        .setFirstName("")
+                        .setLastName("")
+                        .setEmail("invalid-email")
+                        .setMobileNumber("LL00011111")
+                        .setBirthDate("2","August","2000")
+                        .setAddress("USA")
+                        .clickSubmit();
+
+        registrationPage.firstNameFieldInvalidationCheck()
+                        .lasNameFieldInvalidationCheck()
+                        .userEmailFieldInvalidationCheck()
+                        .genderFieldInvalidationCheck()
+                        .mobileNumberFieldInvalidationCheck();
     }
 }

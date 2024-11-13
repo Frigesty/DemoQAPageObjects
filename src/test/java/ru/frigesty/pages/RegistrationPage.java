@@ -1,9 +1,11 @@
 package ru.frigesty.pages;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import ru.frigesty.pages.components.CalendarComponent;
 import ru.frigesty.pages.components.ModalComponent;
 
+import static com.codeborne.selenide.Condition.cssValue;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -118,6 +120,39 @@ public class RegistrationPage {
 
     public RegistrationPage verifyResult(String key, String value) {
         modalComponent.verifyResult(key, value);
+
+        return this;
+    }
+
+    public RegistrationPage firstNameFieldInvalidationCheck() {
+        $(firstNameInput).shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
+
+
+        return this;
+    }
+
+    public RegistrationPage lasNameFieldInvalidationCheck() {
+        $(lastNameInput).shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
+
+        return this;
+    }
+
+    public RegistrationPage userEmailFieldInvalidationCheck() {
+        $(userEmailInput).shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
+
+        return this;
+    }
+
+    public RegistrationPage genderFieldInvalidationCheck() {
+        ElementsCollection radioLabels = $$(".custom-radio label");
+        for (SelenideElement label : radioLabels) {
+            label.shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
+        }
+        return this;
+    }
+
+    public RegistrationPage mobileNumberFieldInvalidationCheck() {
+        $(mobileNumberInput).shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
 
         return this;
     }

@@ -29,7 +29,6 @@ public class RegistrationPage {
     CalendarComponent calendarComponent = new CalendarComponent();
     ModalComponent modalComponent = new ModalComponent();
 
-
     public RegistrationPage openPage() {
         open("/automation-practice-form");
         executeJavaScript("$('footer').remove()");
@@ -151,9 +150,8 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage mobileNumberFieldInvalidationCheck() {
+    public void mobileNumberFieldInvalidationCheck() {
         $(mobileNumberInput).shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
 
-        return this;
     }
 }

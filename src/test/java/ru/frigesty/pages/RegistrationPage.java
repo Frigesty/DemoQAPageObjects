@@ -31,9 +31,13 @@ public class RegistrationPage {
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
+
+        return this;
+    }
+
+    public RegistrationPage removeBanners() {
         executeJavaScript("$('footer').remove()");
         executeJavaScript("$('#fixedban').remove()");
-
         return this;
     }
 
@@ -124,20 +128,20 @@ public class RegistrationPage {
     }
 
     public RegistrationPage firstNameFieldInvalidationCheck() {
-        $(firstNameInput).shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
+        firstNameInput.shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
 
 
         return this;
     }
 
     public RegistrationPage lasNameFieldInvalidationCheck() {
-        $(lastNameInput).shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
+        lastNameInput.shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
 
         return this;
     }
 
     public RegistrationPage userEmailFieldInvalidationCheck() {
-        $(userEmailInput).shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
+        userEmailInput.shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
 
         return this;
     }
@@ -151,7 +155,6 @@ public class RegistrationPage {
     }
 
     public void mobileNumberFieldInvalidationCheck() {
-        $(mobileNumberInput).shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
-
+        mobileNumberInput.shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
     }
 }

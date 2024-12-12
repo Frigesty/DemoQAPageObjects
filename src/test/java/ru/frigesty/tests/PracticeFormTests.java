@@ -11,6 +11,7 @@ public class PracticeFormTests extends TestBase {
     void fullFillFormTest() {
 
         registrationPage.openPage()
+                        .removeBanners()
                         .setFirstName("Airat")
                         .setLastName("Karimov")
                         .setEmail("karimov@yandex.ru")
@@ -41,6 +42,7 @@ public class PracticeFormTests extends TestBase {
     void minimalFillFormTest() {
 
         registrationPage.openPage()
+                        .removeBanners()
                         .setFirstName("Airat")
                         .setLastName("Karimov")
                         .chooseGender("Male")
@@ -59,6 +61,7 @@ public class PracticeFormTests extends TestBase {
     void negativeFillFormTest() {
 
         registrationPage.openPage()
+                        .removeBanners()
                         .setFirstName("")
                         .setLastName("")
                         .setEmail("invalid-email")
